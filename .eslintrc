@@ -1,0 +1,17 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": "off",
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "never"],
+
+        "no-empty": "warn",
+        "no-cond-assign": ["error", "always"],
+
+         "for-direction": "off"
+    }
+}
