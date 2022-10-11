@@ -35,7 +35,7 @@ export default function SongAPI() {
       const reqOne = axios.get(url_artist)
       const reqTwo = axios.get(url_lyric, {
         responseType: 'document',
-        url: 'https://cors-proxy1.p.rapidapi.com/',
+        baseURL: 'https://cors-proxy1.p.rapidapi.com/',
         headers: {
           'X-RapidAPI-Key': 'SIGN-UP-FOR-KEY',
           'X-RapidAPI-Host': 'cors-proxy1.p.rapidapi.com'
