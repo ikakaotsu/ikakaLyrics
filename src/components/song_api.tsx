@@ -31,9 +31,16 @@ export default function SongAPI() {
         `https://www.theaudiodb.com/api/v1/json/2/discography.php?s=${artist}`
       let url_lyric =
         `http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
-        // `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
+      // `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
       const reqOne = axios.get(url_artist)
-      const reqTwo = axios.get(url_lyric, { responseType: 'document', headers:{'Access-Control-Allow-Origin': '*'} })
+      const reqTwo = axios.get(url_lyric, {
+        responseType: 'document',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+      })
 
       axios.all([reqOne, reqTwo]).then(axios.spread((...responses) => {
         const res_album = responses[0].data.album
@@ -51,17 +58,22 @@ export default function SongAPI() {
   }, [search])
 
   const handleSearch = (data: any) => {
-    setState({ loading: true, responses:null, error: null })
+    setState({ loading: true, responses: null, error: null })
     setSearch(data)
   }
   return (
     <>
-      <Flex bg={'#c2c9e2'} pl={'12px'} borderWidth={'2px'} borderColor={'#7c899f'}>
+      <Flex
+        bg={'#c2c9e2'}
+        pl={'12px'}
+        borderWidth={'2px'}
+        borderColor={'#7c899f'}
+      >
         <Center textShadow={'1px 1px #423e56'}>𝕀𝕂𝔸𝕂𝔸𝕆𝕋𝕊𝕌</Center>
         <Spacer />
         <SongForm handleSearch={handleSearch} />
       </Flex>
-      <HStack alignItems={'initial'} >
+      <HStack alignItems={'initial'}>
         <StateHandler
           showError={state.error}
           showLoader={state.loading}
