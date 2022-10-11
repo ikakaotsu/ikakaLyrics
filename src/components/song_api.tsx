@@ -36,7 +36,7 @@ export default function SongAPI() {
       const reqTwo = axios.get(url_lyric, {
         responseType: 'document',
         headers: {
-          'Access-Control-Allow-Origin': 'http://api.chartlyrics.com',
+          'Access-Control-Allow-Origin': 'https://ikakalyrics.onrender.com',
           'Access-Control-Allow-Headers': '*',
           'Access-Control-Allow-Credentials': 'true',
         },
