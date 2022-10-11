@@ -34,12 +34,7 @@ export default function SongAPI() {
       // `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
       const reqOne = axios.get(url_artist)
       const reqTwo = axios.get(url_lyric, {
-        responseType: 'document',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Credentials': 'true',
-        },
+        responseType: 'document'
       })
 
       axios.all([reqOne, reqTwo]).then(axios.spread((...responses) => {
