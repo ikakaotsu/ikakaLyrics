@@ -34,7 +34,12 @@ export default function SongAPI() {
       // `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
       const reqOne = axios.get(url_artist)
       const reqTwo = axios.get(url_lyric, {
-        responseType: 'document'
+        responseType: 'document',
+        url: 'https://cors-proxy1.p.rapidapi.com/',
+        headers: {
+          'X-RapidAPI-Key': 'SIGN-UP-FOR-KEY',
+          'X-RapidAPI-Host': 'cors-proxy1.p.rapidapi.com'
+         }
       })
 
       axios.all([reqOne, reqTwo]).then(axios.spread((...responses) => {
