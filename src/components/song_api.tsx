@@ -1,10 +1,11 @@
 import axios from 'axios'
-import { Center, Flex, HStack, Spacer } from '@chakra-ui/react'
+import { Box, Center, Flex, HStack, Link, Spacer } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import SongForm from './song_form'
 import DiscoArtist from './disco_artist'
 import Lyrics from './lyrics'
 import StateHandler from './state_handler'
+import { UnlockIcon } from '@chakra-ui/icons'
 
 type T_State = {
   loading: boolean;
@@ -31,8 +32,7 @@ export default function SongAPI() {
         `https://www.theaudiodb.com/api/v1/json/2/discography.php?s=${artist}`
       let url_lyric =
         // `http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
-      // `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
-      `https://cors-proxy.htmldriven.com/?url=http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
+      `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
       const reqOne = axios.get(url_artist)
       const reqTwo = axios.get(url_lyric, {
         responseType: 'document'
@@ -67,6 +67,11 @@ export default function SongAPI() {
       >
         <Center textShadow={'1px 1px #423e56'}>𝕀𝕂𝔸𝕂𝔸𝕆𝕋𝕊𝕌</Center>
         <Spacer />
+          <Center mr={'10px'}>
+          <Link href='https://cors-anywhere.herokuapp.com/corsdemo' isExternal>
+            <UnlockIcon w={6} h={6} />
+          </Link>
+          </Center>
         <SongForm handleSearch={handleSearch} />
       </Flex>
       <HStack alignItems={'initial'}>
