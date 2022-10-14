@@ -30,16 +30,16 @@ export default function SongAPI() {
       const { artist, song } = search
       let url_artist =
         `https://www.theaudiodb.com/api/v1/json/2/discography.php?s=${artist}`
-      // let url_lyric =
-      // `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
+       let url_lyric =
+       `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
       const reqOne = axios.get(url_artist)
+       const reqTwo = axios.get(url_lyric, {
+         responseType: 'document'
+       })
+      // let url_lyric=`https://proxy.cors.sh/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
       // const reqTwo = axios.get(url_lyric, {
       //   responseType: 'document'
       // })
-      let url_lyric=`https://proxy.cors.sh/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
-      const reqTwo = axios.get(url_lyric, {
-        responseType: 'document'
-      })
 
 
       axios.all([reqOne, reqTwo]).then(axios.spread((...responses) => {
