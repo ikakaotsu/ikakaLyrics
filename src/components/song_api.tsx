@@ -30,18 +30,22 @@ export default function SongAPI() {
       const { artist, song } = search
       let url_artist =
         `https://www.theaudiodb.com/api/v1/json/2/discography.php?s=${artist}`
-      let url_lyric =
-        // `http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
-      `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
+      // let url_lyric =
+      // `https://cors-anywhere.herokuapp.com/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
       const reqOne = axios.get(url_artist)
+      // const reqTwo = axios.get(url_lyric, {
+      //   responseType: 'document'
+      // })
+      let url_lyric=`https://proxy.cors.sh/http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=${artist}&song=${song}`
       const reqTwo = axios.get(url_lyric, {
         responseType: 'document'
       })
 
+
       axios.all([reqOne, reqTwo]).then(axios.spread((...responses) => {
         const res_album = responses[0].data.album
         const res_lyric = responses[1].data.all[10].textContent
-        console.log(res_lyric)
+        // console.log(res_lyric)
         setState({ loading: false, responses, error: null })
         setDisco(res_album)
         setLyric(res_lyric)
@@ -67,7 +71,7 @@ export default function SongAPI() {
       >
         <Center textShadow={'1px 1px #423e56'}>𝕀𝕂𝔸𝕂𝔸𝕆𝕋𝕊𝕌</Center>
         <Spacer />
-          <Center mr={'10px'}>
+          <Center mr={'10px'} >
           <Link href='https://cors-anywhere.herokuapp.com/corsdemo' isExternal>
             <UnlockIcon w={6} h={6} />
           </Link>

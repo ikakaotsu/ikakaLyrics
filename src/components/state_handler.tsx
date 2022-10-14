@@ -22,7 +22,7 @@ export default function StateHandler(props: any) {
         <AlertIcon />
         <AlertTitle>Artist or Lyric not found!</AlertTitle>
         <AlertDescription>
-          Hit the search icon and find the lyric.
+          Cors are enabled? Hit the 🔓and enabled it, next return the page
         </AlertDescription>
       </Alert>
     )
